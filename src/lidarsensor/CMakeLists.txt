@@ -135,6 +135,26 @@ install(TARGETS
 )
 
 #####################################################
+#编译imu数据接收节点
+add_executable(imu_receiver_node
+  github_GazeboCookBook/imu/imu_receiver_node.cpp
+)
+#配置依赖
+ament_target_dependencies(imu_receiver_node
+  rclcpp
+  sensor_msgs
+)
+
+
+#安装imu数据接收节点
+install(TARGETS
+  imu_receiver_node
+  DESTINATION lib/${PROJECT_NAME}
+
+)
+
+#####################################################
+
 
 
 
