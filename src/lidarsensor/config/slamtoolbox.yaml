@@ -1,0 +1,50 @@
+slam_toolbox:
+  ros__parameters:
+    # 仿真时间：使用 Gazebo 的 /clock
+    use_sim_time: true
+
+    # 坐标系
+    map_frame: map
+    odom_frame: odom
+    base_frame: base_link
+
+    # 激光雷达话题
+    scan_topic: /scan
+
+    # 建图模式
+    mode: mapping
+
+    # 地图参数
+    resolution: 0.05
+    max_laser_range: 12.0
+    map_update_interval: 2.0
+
+    # 激光数据处理
+    throttle_scans: 1
+    minimum_time_interval: 0.2
+    transform_timeout: 0.2
+    tf_buffer_duration: 30.0
+
+    # 机器人移动后，满足移动距离或转角条件才添加新的扫描节点
+    minimum_travel_distance: 0.2
+    minimum_travel_heading: 0.2
+
+    # 扫描匹配与回环检测
+    use_scan_matching: true
+    use_scan_barycenter: true
+    do_loop_closing: true
+    loop_search_maximum_distance: 3.0
+
+    # 地图与 TF 发布
+    use_map_saver: true
+    transform_publish_period: 0.02
+    debug_logging: false
+    enable_interactive_mode: true
+
+    # 优化器
+    solver_plugin: solver_plugins::CeresSolver
+    ceres_linear_solver: SPARSE_NORMAL_CHOLESKY
+    ceres_preconditioner: SCHUR_JACOBI
+    ceres_trust_strategy: LEVENBERG_MARQUARDT
+    ceres_dogleg_type: TRADITIONAL_DOGLEG
+    ceres_loss_function: None
