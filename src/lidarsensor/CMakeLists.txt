@@ -13,6 +13,7 @@ find_package(visualization_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
 find_program(CCACHE_FOUND ccache)
 find_package(tf2_ros REQUIRED)
+find_package(nav_msgs REQUIRED)
 if(CCACHE_FOUND)
     set(CMAKE_C_COMPILER_LAUNCHER ccache)
     set(CMAKE_CXX_COMPILER_LAUNCHER ccache)
@@ -154,7 +155,22 @@ install(TARGETS
 )
 
 #####################################################
+#运动test节点
+add_executable(run_test_node
+  github_GazeboCookBook/slam/run_test.cpp
+)
 
+ament_target_dependencies(run_test_node
+  rclcpp
+  geometry_msgs
+  nav_msgs
+)
+
+install(TARGETS
+  run_test_node
+  DESTINATION lib/${PROJECT_NAME}
+)
+#####################################################
 
 
 
